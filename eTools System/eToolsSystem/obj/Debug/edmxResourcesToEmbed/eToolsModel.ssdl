@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="eToolsSystem.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="eToolsSystemStoreContainer">
+    <EntitySet Name="Category" EntityType="eToolsSystem.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employee" EntityType="eToolsSystem.Store.Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IDGenerator" EntityType="eToolsSystem.Store.IDGenerator" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Position" EntityType="eToolsSystem.Store.Position" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PurchaseOrder" EntityType="eToolsSystem.Store.PurchaseOrder" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PurchaseOrderDetail" EntityType="eToolsSystem.Store.PurchaseOrderDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sale" EntityType="eToolsSystem.Store.Sale" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SaleDetail" EntityType="eToolsSystem.Store.SaleDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StockItem" EntityType="eToolsSystem.Store.StockItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vendor" EntityType="eToolsSystem.Store.Vendor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InventoryUnitsOnOrder" EntityType="eToolsSystem.Store.InventoryUnitsOnOrder" store:Type="Views" store:Schema="dbo" store:Name="InventoryUnitsOnOrder">
+      <DefiningQuery>SELECT 
+      [InventoryUnitsOnOrder].[StockNumber] AS [StockNumber], 
+      [InventoryUnitsOnOrder].[UnitsOnOrder] AS [UnitsOnOrder]
+      FROM [dbo].[InventoryUnitsOnOrder] AS [InventoryUnitsOnOrder]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_EmployeePosition_PositionID" Association="eToolsSystem.Store.FK_EmployeePosition_PositionID">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseEmployee_EmployeeID" Association="eToolsSystem.Store.FK_PurchaseEmployee_EmployeeID">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderDetailPurchaseOrder_OrderNumber" Association="eToolsSystem.Store.FK_PurchaseOrderDetailPurchaseOrder_OrderNumber">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+      <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderDetailStockItem_StockNumber" Association="eToolsSystem.Store.FK_PurchaseOrderDetailStockItem_StockNumber">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseVendor_VendorID" Association="eToolsSystem.Store.FK_PurchaseVendor_VendorID">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetailSale_SaleNumber" Association="eToolsSystem.Store.FK_SaleDetailSale_SaleNumber">
+      <End Role="Sale" EntitySet="Sale" />
+      <End Role="SaleDetail" EntitySet="SaleDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetailStockItem_StockNumber" Association="eToolsSystem.Store.FK_SaleDetailStockItem_StockNumber">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="SaleDetail" EntitySet="SaleDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleEmployee_EmployeeID" Association="eToolsSystem.Store.FK_SaleEmployee_EmployeeID">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockItemCategory_CategoryID" Association="eToolsSystem.Store.FK_StockItemCategory_CategoryID">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="StockItem" EntitySet="StockItem" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="DateHired" Type="datetime" Nullable="false" />
+    <Property Name="DateReleased" Type="datetime" />
+    <Property Name="PositionID" Type="int" Nullable="false" />
+    <Property Name="LoginID" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="IDGenerator">
+    <Key>
+      <PropertyRef Name="KeyField" />
+    </Key>
+    <Property Name="KeyField" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastValue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionID" />
+    </Key>
+    <Property Name="PositionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="OrderNumber" />
+    </Key>
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="ReceiveDate" Type="datetime" />
+    <Property Name="VendorID" Type="int" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="TaxAmount" Type="money" Nullable="false" />
+    <Property Name="SubTotal" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseOrderDetail">
+    <Key>
+      <PropertyRef Name="OrderNumber" />
+      <PropertyRef Name="StockNumber" />
+    </Key>
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="StockNumber" Type="int" Nullable="false" />
+    <Property Name="PurchasePrice" Type="smallmoney" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="SaleNumber" />
+    </Key>
+    <Property Name="SaleNumber" Type="int" Nullable="false" />
+    <Property Name="SaleDate" Type="datetime" Nullable="false" />
+    <Property Name="SaleRefund" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="OriginalSaleNumber" Type="int" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="TaxAmount" Type="smallmoney" Nullable="false" />
+    <Property Name="SubTotal" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleDetail">
+    <Key>
+      <PropertyRef Name="SaleNumber" />
+      <PropertyRef Name="StockNumber" />
+    </Key>
+    <Property Name="SaleNumber" Type="int" Nullable="false" />
+    <Property Name="StockNumber" Type="int" Nullable="false" />
+    <Property Name="SellingPrice" Type="smallmoney" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockItem">
+    <Key>
+      <PropertyRef Name="StockNumber" />
+    </Key>
+    <Property Name="StockNumber" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SellingPrice" Type="smallmoney" Nullable="false" />
+    <Property Name="PurchasePrice" Type="smallmoney" Nullable="false" />
+    <Property Name="QuantityOnHand" Type="int" Nullable="false" />
+    <Property Name="ReOrderLevel" Type="int" Nullable="false" />
+    <Property Name="Discontinued" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="VendorStockNumber" Type="varchar" MaxLength="25" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="VendorName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Province" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="PostalCode" Type="char" Nullable="false" MaxLength="6" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'eTools.dbo.InventoryUnitsOnOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="InventoryUnitsOnOrder">
+    <Key>
+      <PropertyRef Name="StockNumber" />
+    </Key>
+    <Property Name="StockNumber" Type="int" Nullable="false" />
+    <Property Name="UnitsOnOrder" Type="int" />
+  </EntityType>
+  <Association Name="FK_EmployeePosition_PositionID">
+    <End Role="Position" Type="eToolsSystem.Store.Position" Multiplicity="1" />
+    <End Role="Employee" Type="eToolsSystem.Store.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseEmployee_EmployeeID">
+    <End Role="Employee" Type="eToolsSystem.Store.Employee" Multiplicity="1" />
+    <End Role="PurchaseOrder" Type="eToolsSystem.Store.PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderDetailPurchaseOrder_OrderNumber">
+    <End Role="PurchaseOrder" Type="eToolsSystem.Store.PurchaseOrder" Multiplicity="1" />
+    <End Role="PurchaseOrderDetail" Type="eToolsSystem.Store.PurchaseOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="OrderNumber" />
+      </Principal>
+      <Dependent Role="PurchaseOrderDetail">
+        <PropertyRef Name="OrderNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderDetailStockItem_StockNumber">
+    <End Role="StockItem" Type="eToolsSystem.Store.StockItem" Multiplicity="1" />
+    <End Role="PurchaseOrderDetail" Type="eToolsSystem.Store.PurchaseOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="StockNumber" />
+      </Principal>
+      <Dependent Role="PurchaseOrderDetail">
+        <PropertyRef Name="StockNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseVendor_VendorID">
+    <End Role="Vendor" Type="eToolsSystem.Store.Vendor" Multiplicity="1" />
+    <End Role="PurchaseOrder" Type="eToolsSystem.Store.PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="VendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetailSale_SaleNumber">
+    <End Role="Sale" Type="eToolsSystem.Store.Sale" Multiplicity="1" />
+    <End Role="SaleDetail" Type="eToolsSystem.Store.SaleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="SaleNumber" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="SaleNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetailStockItem_StockNumber">
+    <End Role="StockItem" Type="eToolsSystem.Store.StockItem" Multiplicity="1" />
+    <End Role="SaleDetail" Type="eToolsSystem.Store.SaleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="StockNumber" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="StockNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleEmployee_EmployeeID">
+    <End Role="Employee" Type="eToolsSystem.Store.Employee" Multiplicity="1" />
+    <End Role="Sale" Type="eToolsSystem.Store.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockItemCategory_CategoryID">
+    <End Role="Category" Type="eToolsSystem.Store.Category" Multiplicity="1" />
+    <End Role="StockItem" Type="eToolsSystem.Store.StockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="StockItem">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreateReturnDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="stocknumber" Type="int" Mode="In" />
+    <Parameter Name="returnprice" Type="smallmoney" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CreateSale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="salerefund" Type="char" Mode="In" />
+    <Parameter Name="originalsalenumber" Type="int" Mode="In" />
+    <Parameter Name="taxamount" Type="smallmoney" Mode="In" />
+    <Parameter Name="subtotal" Type="money" Mode="In" />
+  </Function>
+  <Function Name="CreateSaleDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="stocknumber" Type="int" Mode="In" />
+    <Parameter Name="sellingprice" Type="smallmoney" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetReturnDetailsByOriginalSaleNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="originalsalenumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSaleDetailsBySaleNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="salenumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetStockItemByDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="searchterm" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetStockItemByStockNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="stocknumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UpdateVendor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vendorid" Type="int" Mode="In" />
+    <Parameter Name="vendorname" Type="varchar" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="city" Type="varchar" Mode="In" />
+    <Parameter Name="province" Type="char" Mode="In" />
+    <Parameter Name="postalcode" Type="char" Mode="In" />
+  </Function>
+</Schema>

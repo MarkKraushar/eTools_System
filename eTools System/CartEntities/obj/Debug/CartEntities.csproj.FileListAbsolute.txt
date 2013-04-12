@@ -1,0 +1,22 @@
+C:\DMIT\dschaefer3\DMIT204\TeamDiorama\CartEntities\bin\Debug\CartEntities.dll
+C:\DMIT\dschaefer3\DMIT204\TeamDiorama\CartEntities\bin\Debug\CartEntities.pdb
+C:\DMIT\dschaefer3\DMIT204\TeamDiorama\CartEntities\obj\Debug\ResolveAssemblyReference.cache
+C:\DMIT\dschaefer3\DMIT204\TeamDiorama\CartEntities\obj\Debug\CartEntities.dll
+C:\DMIT\dschaefer3\DMIT204\TeamDiorama\CartEntities\obj\Debug\CartEntities.pdb
+C:\Users\Mark\Desktop\DMIT\Semester 3\DMIT 204\TeamDiorama\CartEntities\bin\Debug\CartEntities.dll
+C:\Users\Mark\Desktop\DMIT\Semester 3\DMIT 204\TeamDiorama\CartEntities\bin\Debug\CartEntities.pdb
+C:\Users\Mark\Desktop\DMIT\Semester 3\DMIT 204\TeamDiorama\CartEntities\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\DMIT\Semester 3\DMIT 204\TeamDiorama\CartEntities\obj\Debug\CartEntities.dll
+C:\Users\Mark\Desktop\DMIT\Semester 3\DMIT 204\TeamDiorama\CartEntities\obj\Debug\CartEntities.pdb
+C:\Users\Mark\Desktop\C_Temp\TeamDiorama\CartEntities\bin\Debug\CartEntities.dll
+C:\Users\Mark\Desktop\C_Temp\TeamDiorama\CartEntities\bin\Debug\CartEntities.pdb
+C:\Users\Mark\Desktop\C_Temp\TeamDiorama\CartEntities\obj\Debug\CartEntities.dll
+C:\Users\Mark\Desktop\C_Temp\TeamDiorama\CartEntities\obj\Debug\CartEntities.pdb
+C:\Users\Mark\Desktop\ProjectTemp\TeamDiorama\CartEntities\bin\Debug\CartEntities.dll
+C:\Users\Mark\Desktop\ProjectTemp\TeamDiorama\CartEntities\bin\Debug\CartEntities.pdb
+C:\Users\Mark\Desktop\ProjectTemp\TeamDiorama\CartEntities\obj\Debug\CartEntities.dll
+C:\Users\Mark\Desktop\ProjectTemp\TeamDiorama\CartEntities\obj\Debug\CartEntities.pdb
+C:\Users\Mark\Documents\GitHub\eTools_Project\eTools System\CartEntities\bin\Debug\CartEntities.dll
+C:\Users\Mark\Documents\GitHub\eTools_Project\eTools System\CartEntities\bin\Debug\CartEntities.pdb
+C:\Users\Mark\Documents\GitHub\eTools_Project\eTools System\CartEntities\obj\Debug\CartEntities.dll
+C:\Users\Mark\Documents\GitHub\eTools_Project\eTools System\CartEntities\obj\Debug\CartEntities.pdb
