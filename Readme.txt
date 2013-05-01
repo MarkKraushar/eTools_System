@@ -14,4 +14,4 @@ Then press Ctrl + F5 to run the program.
 
 All code is open for review by employers and fellow programmers.
 
-Note: The script was created in Microsoft SQL Server 2008 R2.  There may be compatibility issues with other versions.
+Note:  I would only recommend attempting to run the program if you have some prior experience with ASP.Net / MS-SQL browser-based applications.  The script was created in Microsoft SQL Server 2008 R2.  There may be compatibility issues with other versions and some connection strings may need to be altered, depending on the system.
